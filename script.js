@@ -1,11 +1,11 @@
 // DOM Elements
 let currentTheme = 'dark';
 let linksData = [
-    { id: 1, icon: 'fab fa-instagram', url: 'https://instagram.com/han', text: 'Instagram' },
-    { id: 2, icon: 'fab fa-youtube', url: 'https://youtube.com/c/han', text: 'YouTube' },
-    { id: 3, icon: 'fab fa-tiktok', url: 'https://tiktok.com/@han', text: 'TikTok' },
-    { id: 4, icon: 'fab fa-github', url: 'https://github.com/han', text: 'GitHub' },
-    { id: 5, icon: 'fas fa-envelope', url: 'mailto:han@example.com', text: 'Email' }
+    { id: 1, icon: 'fab fa-instagram', url: 'https://instagram.com/rizaa', text: 'Instagram' },
+    { id: 2, icon: 'fab fa-youtube', url: 'https://youtube.com/c/rizaa', text: 'YouTube' },
+    { id: 3, icon: 'fab fa-tiktok', url: 'https://tiktok.com/@rizaa', text: 'TikTok' },
+    { id: 4, icon: 'fab fa-github', url: 'https://github.com/rizaa', text: 'GitHub' },
+    { id: 5, icon: 'fas fa-envelope', url: 'mailto:rizaa@example.com', text: 'Email' }
 ];
 
 // Initialize
