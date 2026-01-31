@@ -4,33 +4,31 @@
   <meta charset="UTF-8">
   <title>Linktree Builder</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 <div class="container">
 
-  <!-- SETTINGS -->
-  <div class="settings">
+  <!-- PANEL -->
+  <div class="panel">
     <h2>Profile</h2>
 
-    <label>Avatar</label>
     <input type="file" id="avatarInput">
-
-    <label>Name</label>
     <input type="text" id="nameInput" placeholder="Your name">
-
-    <label>Tagline</label>
     <input type="text" id="taglineInput" placeholder="Tagline">
-
-    <label>Footer Emoji</label>
-    <input type="text" id="footerEmoji" placeholder="🔥">
+    <input type="text" id="footerInput" placeholder="Footer emoji">
 
     <h2>Social Icons</h2>
     <select id="socialType">
       <option value="instagram">Instagram</option>
       <option value="tiktok">TikTok</option>
-      <option value="github">Github</option>
+      <option value="github">GitHub</option>
+      <option value="discord">Discord</option>
+      <option value="youtube">YouTube</option>
+      <option value="whatsapp">WhatsApp</option>
+      <option value="telegram">Telegram</option>
     </select>
     <input type="text" id="socialUrl" placeholder="https://">
     <button id="addSocial">Add Social</button>
@@ -40,12 +38,14 @@
 
   <!-- PREVIEW -->
   <div class="preview">
-    <div class="card" id="card">
-      <div class="avatar" id="avatar"></div>
-      <div class="name" id="name">Your Name</div>
-      <div class="tagline" id="tagline">Tagline</div>
-      <div class="links" id="socials"></div>
-      <div class="footer" id="footer">🔥</div>
+    <div class="card">
+      <div id="previewAvatar" class="avatar"></div>
+      <h3 id="previewName">Your Name</h3>
+      <p id="previewTagline">Tagline</p>
+
+      <div id="previewLinks" class="links"></div>
+
+      <div id="previewFooter" class="footer">🔥</div>
     </div>
   </div>
 
