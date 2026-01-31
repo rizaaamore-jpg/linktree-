@@ -93,6 +93,77 @@
             resize: vertical;
         }
 
+        /* Toggle Switch */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            margin: 0;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #444;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #e53935;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .social-label {
+            flex: 1;
+            margin: 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .social-url-input {
+            margin-top: 4px;
+            display: none;
+        }
+
+        .social-url-input.active {
+            display: block;
+        }
+
         .link-item {
             background-color: #2d2d2d;
             border: 1px solid #444;
@@ -370,83 +441,42 @@
             </button>
         </div>
 
-        <!-- Bagian Media Sosial Tambahan -->
+        <!-- Bagian Media Sosial (Tinggal Aktifkan) -->
         <div class="section">
             <h3 class="section-title">
-                <i class="fas fa-share-alt"></i> Media Sosial Tambahan
+                <i class="fas fa-share-alt"></i> Media Sosial
             </h3>
-            <div id="social-list">
-                <div class="social-item" data-index="0">
-                    <select class="social-icon-select" oninput="updatePreview()">
-                        <option value="fab fa-discord">Discord</option>
-                        <option value="fab fa-tiktok">TikTok</option>
-                        <option value="fab fa-instagram">Instagram</option>
-                        <option value="fab fa-youtube">YouTube</option>
-                        <option value="fab fa-facebook">Facebook</option>
-                        <option value="fab fa-twitter">Twitter/X</option>
-                        <option value="fab fa-whatsapp">WhatsApp</option>
-                        <option value="fab fa-telegram">Telegram</option>
-                        <option value="fab fa-twitch">Twitch</option>
-                        <option value="fab fa-spotify">Spotify</option>
-                        <option value="fab fa-snapchat">Snapchat</option>
-                        <option value="fab fa-pinterest">Pinterest</option>
-                        <option value="fab fa-linkedin">LinkedIn</option>
-                    </select>
-                    <input type="url" class="social-url" placeholder="https://linkmu.com" oninput="updatePreview()">
-                    <button class="btn btn-danger" onclick="removeSocial(0)">❌ Hapus</button>
-                </div>
+            
+            <!-- Discord -->
+            <div class="toggle-group">
+                <label class="social-label"><i class="fab fa-discord"></i> Discord</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="social-discord" onchange="toggleSocial('discord')">
+                    <span class="slider"></span>
+                </label>
             </div>
-            <button class="btn btn-primary" onclick="addSocial()">
-                <i class="fas fa-plus"></i> Tambah Sosial Media
-            </button>
-        </div>
+            <input type="url" id="url-discord" class="social-url-input" placeholder="https://discord.gg/linkmu" oninput="updatePreview()">
 
-        <!-- Tombol Export -->
-        <button class="btn export-btn" onclick="exportHTML()">
-            <i class="fas fa-download"></i> Export HTML File
-        </button>
-    </div>
-
-    <!-- Panel Pratinjau Kanan -->
-    <div class="preview-panel">
-        <div class="preview-device">
-            <div class="device-notch"></div>
-            <div id="live-preview">
-                <img id="preview-avatar" src="https://via.placeholder.com/90" alt="Avatar Pratinjau">
-                <h3 id="preview-name">Nama Kamu</h3>
-                <p id="preview-tagline">Deskripsi singkat kamu</p>
-                <div id="preview-links"></div>
-                <div id="preview-socials"></div>
+            <!-- TikTok -->
+            <div class="toggle-group">
+                <label class="social-label"><i class="fab fa-tiktok"></i> TikTok</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="social-tiktok" onchange="toggleSocial('tiktok')">
+                    <span class="slider"></span>
+                </label>
             </div>
-        </div>
-    </div>
+            <input type="url" id="url-tiktok" class="social-url-input" placeholder="https://tiktok.com/@namamu" oninput="updatePreview()">
 
-    <script>
-        // Inisialisasi pratinjau pertama kali
-        updatePreview();
+            <!-- Instagram -->
+            <div class="toggle-group">
+                <label class="social-label"><i class="fab fa-instagram"></i> Instagram</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="social-instagram" onchange="toggleSocial('instagram')">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <input type="url" id="url-instagram" class="social-url-input" placeholder="https://instagram.com/@namamu" oninput="updatePreview()">
 
-        // Update semua pratinjau ketika ada perubahan
-        function updatePreview() {
-            const name = document.getElementById('profile-name').value || 'Nama Kamu';
-            const tagline = document.getElementById('profile-tagline').value || 'Deskripsi singkat kamu';
-            const themeColor = document.getElementById('theme-color').value;
-            const darkColor = darkenColor(themeColor, 0.2);
-            const linkItems = document.querySelectorAll('.link-item');
-            const socialItems = document.querySelectorAll('.social-item');
-
-            // Update data profil
-            document.getElementById('preview-name').textContent = name;
-            document.getElementById('preview-tagline').textContent = tagline;
-
-            // Update link utama
-            const previewLinks = document.getElementById('preview-links');
-            previewLinks.innerHTML = '';
-            linkItems.forEach((item) => {
-                const linkText = item.querySelector('.link-text').value || 'Link Baru';
-                const linkUrl = item.querySelector('.link-url').value || '#';
-                const linkIcon = item.querySelector('.link-icon').value;
-
-                const linkBtn = document.createElement('a');
-                linkBtn.href = linkUrl;
-                linkBtn.className = 'preview-link-btn';
-                linkBtn.style.background
+            <!-- YouTube -->
+            <div class="toggle-group">
+                <label class="social-label"><i class="fab fa-youtube"></i>
