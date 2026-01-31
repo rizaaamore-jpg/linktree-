@@ -1,304 +1,111 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+*{
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif
 }
 
-body {
-    background-color: #0a0a0a;
-    color: #ffffff;
-    min-height: 100vh;
+body{
+  margin:0;
+  background:#0f0f0f;
+  color:#fff;
+  display:flex;
+  height:100vh
 }
 
-/* Header Aplikasi */
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 25px;
-    background-color: #121212;
-    border-bottom: 1px solid #222222;
+.sidebar{
+  width:260px;
+  background:#151515;
+  padding:16px;
+  overflow:auto
 }
 
-.app-header h1 {
-    color: #f43f5e;
-    font-size: 1.5rem;
+.sidebar h2{
+  color:#ff3b6b
 }
 
-.header-actions {
-    display: flex;
-    gap: 10px;
+.sidebar label{
+  font-size:13px;
+  display:block;
+  margin-top:12px
 }
 
-/* Tombol Umum */
-.btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
+.sidebar input{
+  width:100%;
+  margin-top:4px;
+  padding:8px;
+  border-radius:6px;
+  border:none
 }
 
-.btn-primary {
-    background-color: #f43f5e;
-    color: #ffffff;
+.sidebar button{
+  margin-top:10px;
+  padding:8px;
+  width:100%;
+  border:none;
+  border-radius:6px;
+  background:#ff3b6b;
+  color:#fff;
+  cursor:pointer
 }
 
-.btn-primary:hover {
-    background-color: #e11d48;
+.main{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center
 }
 
-.btn-secondary {
-    background-color: #222222;
-    color: #ffffff;
+.phone{
+  width:320px;
+  height:620px;
+  border-radius:30px;
+  background:#111;
+  border:3px solid #333;
+  padding:20px;
+  text-align:center
 }
 
-.btn-secondary:hover {
-    background-color: #333333;
+.avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#444;
+  margin:0 auto 10px;
+  overflow:hidden
 }
 
-.btn-danger {
-    background-color: #b91c1c;
-    color: #ffffff;
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover
 }
 
-.btn-danger:hover {
-    background-color: #991b1b;
+.name{
+  font-size:20px;
+  font-weight:bold
 }
 
-.btn-small {
-    padding: 5px 10px;
-    font-size: 0.8rem;
+.tagline{
+  font-size:14px;
+  opacity:.8;
+  margin-bottom:10px
 }
 
-/* Container Utama */
-.main-wrapper {
-    display: flex;
-    height: calc(100vh - 62px);
+.links a{
+  display:block;
+  margin:8px 0;
+  padding:10px;
+  border-radius:8px;
+  background:#222;
+  color:#fff;
+  text-decoration:none
 }
 
-/* Panel Pengaturan Kiri */
-.settings-sidebar {
-    width: 350px;
-    background-color: #121212;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #222222;
+.socials span{
+  margin:0 5px;
+  font-size:20px
 }
 
-/* Menu Pengaturan */
-.settings-menu {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid #222222;
+footer{
+  margin-top:12px;
+  font-size:18px
 }
-
-.menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background-color: transparent;
-    border: none;
-    color: #aaaaaa;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s ease;
-}
-
-.menu-item.active {
-    background-color: #1a1a1a;
-    color: #f43f5e;
-    border-left: 3px solid #f43f5e;
-}
-
-.menu-item:hover {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
-
-/* Isi Pengaturan */
-.settings-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-}
-
-.settings-panel {
-    display: none;
-}
-
-.settings-panel.active {
-    display: block;
-}
-
-.settings-panel h3 {
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    color: #f43f5e;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-    color: #aaaaaa;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 8px 10px;
-    background-color: #222222;
-    border: 1px solid #333333;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: 0.9rem;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #f43f5e;
-}
-
-/* Avatar Picker */
-.avatar-picker {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.avatar-preview {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #f43f5e, #8b5cf6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-}
-
-.avatar-upload-input {
-    display: none;
-}
-
-/* Item Link & Social */
-.link-item,
-.social-item {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #1a1a1a;
-    border-radius: 4px;
-}
-
-.link-item input,
-.social-item input,
-.link-item select,
-.social-item select {
-    flex: 1;
-    padding: 6px 8px;
-    font-size: 0.8rem;
-}
-
-/* Panel Pratinjau Kanan */
-.preview-section {
-    flex: 1;
-    background-color: #0a0a0a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.preview-header {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.preview-header h2 {
-    font-size: 1.3rem;
-    color: #ffffff;
-}
-
-/* Preview HP */
-.phone-preview {
-    width: 300px;
-    height: 580px;
-    background-color: #121212;
-    border-radius: 30px;
-    border: 8px solid #222222;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
-}
-
-.phone-notch {
-    width: 160px;
-    height: 20px;
-    background-color: #222222;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-}
-
-.phone-screen {
-    width: 100%;
-    height: 100%;
-    background-color: #121212;
-    padding: 40px 20px 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Isi Pratinjau */
-.preview-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #f43f5e, #8b5cf6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 15px;
-}
-
-.preview-name {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.preview-tagline {
-    font-size: 0.9rem;
-    color: #aaaaaa;
-    margin-bottom: 25px;
-    padding: 4px 12px;
-    border-radius: 12px;
-    background-color: #1a1a1a;
-}
-
-.preview-links
