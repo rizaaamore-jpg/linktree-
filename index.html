@@ -32,12 +32,16 @@
     <input id="linkUrl" placeholder="https://">
     <button onclick="addLink()">Add Link</button>
 
-    <h2>Social Icons</h2>
-    <input id="socialText" placeholder="Instagram, TikTok, etc">
-    <button onclick="addSocial()">Add Social</button>
-
-    <button onclick="exportHTML()">Export HTML</button>
-  </div>
+    <<!-- Social Icons -->
+<h2>Social Icons</h2>
+<select id="socialType">
+  <option value="instagram">Instagram</option>
+  <option value="tiktok">TikTok</option>
+  <option value="youtube">YouTube</option>
+  <option value="github">GitHub</option>
+</select>
+<input id="socialUrl" placeholder="https://">
+<button onclick="addSocial()">Add Social</button>
 
   <div class="main">
     <div class="phone" id="preview">
