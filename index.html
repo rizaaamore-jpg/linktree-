@@ -1,56 +1,328 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Linktree Builder</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkCraft - Ultimate Linktree Builder</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="https://img.icons8.com/color/96/000000/link--v1.png"
+    />
 </head>
+
 <body>
+    <div class="container">
 
-<div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-link"></i>
+                <h1>Link<span class="gradient-text">Craft</span></h1>
+            </div>
 
-  <!-- PANEL -->
-  <div class="panel">
-    <h2>Profile</h2>
+            <nav class="nav">
+                <a href="#" class="nav-link active" data-tab="builder">
+                    <i class="fas fa-palette"></i> Builder
+                </a>
+                <a href="#" class="nav-link" data-tab="preview">
+                    <i class="fas fa-eye"></i> Preview
+                </a>
+                <a href="#" class="nav-link" data-tab="export">
+                    <i class="fas fa-download"></i> Export
+                </a>
+            </nav>
 
-    <input type="file" id="avatarInput">
-    <input type="text" id="nameInput" placeholder="Your name">
-    <input type="text" id="taglineInput" placeholder="Tagline">
-    <input type="text" id="footerInput" placeholder="Footer emoji">
+            <button class="vip-btn" id="vipMode">
+                <i class="fas fa-crown"></i> VIP Mode
+            </button>
+        </header>
 
-    <h2>Social Icons</h2>
-    <select id="socialType">
-      <option value="instagram">Instagram</option>
-      <option value="tiktok">TikTok</option>
-      <option value="github">GitHub</option>
-      <option value="discord">Discord</option>
-      <option value="youtube">YouTube</option>
-      <option value="whatsapp">WhatsApp</option>
-      <option value="telegram">Telegram</option>
-    </select>
-    <input type="text" id="socialUrl" placeholder="https://">
-    <button id="addSocial">Add Social</button>
+        <!-- Main Content -->
+        <main class="main-content">
 
-    <button id="exportBtn">Export</button>
-  </div>
+            <!-- Builder Section -->
+            <section id="builder" class="tab-content active">
+                <div class="builder-container">
 
-  <!-- PREVIEW -->
-  <div class="preview">
-    <div class="card">
-      <div id="previewAvatar" class="avatar"></div>
-      <h3 id="previewName">Your Name</h3>
-      <p id="previewTagline">Tagline</p>
+                    <!-- Control Panel -->
+                    <div class="control-panel">
 
-      <div id="previewLinks" class="links"></div>
+                        <!-- Profile Settings -->
+                        <div class="control-section">
+                            <h3><i class="fas fa-user"></i> Profile Settings</h3>
 
-      <div id="previewFooter" class="footer">🔥</div>
+                            <!-- Avatar -->
+                            <div class="form-group">
+                                <label>Avatar Image</label>
+
+                                <div class="avatar-upload">
+                                    <div class="avatar-preview" id="avatarPreview">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+
+                                    <div class="upload-actions">
+                                        <input
+                                            type="file"
+                                            id="avatarUpload"
+                                            accept="image/*"
+                                            hidden
+                                        />
+                                        <button
+                                            class="btn-outline"
+                                            onclick="document.getElementById('avatarUpload').click()"
+                                        >
+                                            <i class="fas fa-upload"></i> Upload
+                                        </button>
+                                        <button
+                                            class="btn-outline"
+                                            onclick="generateRandomAvatar()"
+                                        >
+                                            <i class="fas fa-random"></i> Random
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Name -->
+                            <div class="form-group">
+                                <label for="nameInput">Your Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-signature"></i>
+                                    <input
+                                        type="text"
+                                        id="nameInput"
+                                        placeholder="Enter your name"
+                                        value="Han"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Tagline -->
+                            <div class="form-group">
+                                <label for="taglineInput">Tagline</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                    <input
+                                        type="text"
+                                        id="taglineInput"
+                                        placeholder="Your awesome tagline"
+                                        value="Digital Creator | Content Strategist"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Bio -->
+                            <div class="form-group">
+                                <label for="bioInput">Bio</label>
+                                <textarea
+                                    id="bioInput"
+                                    rows="3"
+                                    placeholder="Tell your story..."
+                                >Welcome to my digital space! I create content about tech, design, and productivity. Let's connect! ✨</textarea>
+                            </div>
+
+                            <!-- Footer Text -->
+                            <div class="form-group">
+                                <label for="footerInput">Footer Text</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-flag"></i>
+                                    <input
+                                        type="text"
+                                        id="footerInput"
+                                        placeholder="Footer text with emoji"
+                                        value="Made with ❤️ using LinkCraft"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="control-section">
+                            <h3><i class="fas fa-share-alt"></i> Social Links</h3>
+                            <div class="links-container" id="linksContainer"></div>
+                            <button class="btn-add-link" onclick="addNewLink()">
+                                <i class="fas fa-plus"></i> Add New Link
+                            </button>
+                        </div>
+
+                        <!-- Theme -->
+                        <div class="control-section">
+                            <h3><i class="fas fa-palette"></i> Theme</h3>
+
+                            <div class="theme-colors">
+                                <div class="color-picker">
+                                    <label>Primary Color</label>
+                                    <input type="color" id="primaryColor" value="#6366f1" />
+                                </div>
+                                <div class="color-picker">
+                                    <label>Background</label>
+                                    <input type="color" id="backgroundColor" value="#0f172a" />
+                                </div>
+                                <div class="color-picker">
+                                    <label>Text Color</label>
+                                    <input type="color" id="textColor" value="#f1f5f9" />
+                                </div>
+                            </div>
+
+                            <div class="theme-presets">
+                                <h4>Quick Themes</h4>
+
+                                <div class="preset-grid">
+                                    <div
+                                        class="preset"
+                                        data-theme="dark"
+                                        style="background: linear-gradient(135deg, #0f172a, #1e293b);"
+                                        onclick="applyTheme('dark')"
+                                    >
+                                        <span>Dark</span>
+                                    </div>
+
+                                    <div
+                                        class="preset"
+                                        data-theme="neon"
+                                        style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);"
+                                        onclick="applyTheme('neon')"
+                                    >
+                                        <span>Neon</span>
+                                    </div>
+
+                                    <div
+                                        class="preset"
+                                        data-theme="gradient"
+                                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100);"
+                                        onclick="applyTheme('gradient')"
+                                    >
+                                        <span>Gradient</span>
+                                    </div>
+
+                                    <div
+                                        class="preset"
+                                        data-theme="light"
+                                        style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); color: #333;"
+                                        onclick="applyTheme('light')"
+                                    >
+                                        <span>Light</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Panel -->
+                    <div class="preview-panel">
+                        <div class="preview-header">
+                            <h3><i class="fas fa-eye"></i> Live Preview</h3>
+                            <div class="preview-actions">
+                                <button class="btn-outline" onclick="toggleFullscreen()">
+                                    <i class="fas fa-expand"></i> Fullscreen
+                                </button>
+                                <button class="btn-outline" onclick="refreshPreview()">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="preview-container">
+                            <div class="linktree-preview" id="linktreePreview"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Preview -->
+            <section id="preview" class="tab-content">
+                <div class="full-preview-container">
+                    <div class="full-preview" id="fullPreview"></div>
+                </div>
+            </section>
+
+            <!-- Export -->
+            <section id="export" class="tab-content">
+                <div class="export-container">
+                    <h2><i class="fas fa-file-export"></i> Export Your Linktree</h2>
+                    <p class="export-subtitle">
+                        Download your custom Linktree as a complete HTML website. Ready to deploy anywhere!
+                    </p>
+
+                    <div class="export-options">
+                        <div class="export-card">
+                            <div class="export-icon">
+                                <i class="fas fa-file-code"></i>
+                            </div>
+                            <h3>HTML Export</h3>
+                            <p>Single HTML file with all styles and scripts embedded.</p>
+                            <button class="btn-export" onclick="exportAsHTML()">
+                                <i class="fas fa-download"></i> Download HTML
+                            </button>
+                        </div>
+
+                        <div class="export-card">
+                            <div class="export-icon">
+                                <i class="fas fa-folder"></i>
+                            </div>
+                            <h3>Full Website</h3>
+                            <p>Complete folder with HTML, CSS, and JavaScript files.</p>
+                            <button class="btn-export" onclick="exportFullWebsite()">
+                                <i class="fas fa-download"></i> Download ZIP
+                            </button>
+                        </div>
+
+                        <div class="export-card">
+                            <div class="export-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3>Deploy Online</h3>
+                            <p>Get a live URL for your Linktree (VIP Feature).</p>
+                            <button class="btn-export vip" onclick="deployOnline()">
+                                <i class="fas fa-crown"></i> Deploy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="export-preview-code">
+                        <h4>Code Preview</h4>
+                        <div class="code-container">
+                            <pre id="codePreview"><code class="html">
+<!-- Your generated HTML code will appear here -->
+                            </code></pre>
+                        </div>
+
+                        <button class="btn-copy" onclick="copyCode()">
+                            <i class="far fa-copy"></i> Copy Code
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                Made with <i class="fas fa-heart" style="color: #ef4444;"></i>
+                by <strong>LinkCraft</strong> • No Errors Guaranteed
+            </p>
+
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                <a href="#"><i class="fas fa-share-alt"></i> Share</a>
+            </div>
+        </footer>
     </div>
-  </div>
 
-</div>
-
-<script src="script.js"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
