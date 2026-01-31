@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkCraft - Linktree Builder PRO</title>
+    <title>LinkCraft - Linktree Builder</title>
     <style>
         * {
             margin: 0;
@@ -107,8 +107,8 @@
             resize: vertical;
         }
 
-        /* Item Link & Sosial Media (Seragam) */
-        .item-container {
+        /* Item Link (Semua Satu Jenis) */
+        .link-item {
             background-color: #273449;
             border: 1px solid #475569;
             border-radius: 10px;
@@ -119,7 +119,7 @@
             gap: 15px;
         }
 
-        .item-controls {
+        .link-controls {
             display: flex;
             gap: 10px;
             margin-top: 5px;
@@ -259,14 +259,14 @@
             line-height: 1.6;
         }
 
-        #preview-main-links {
+        #preview-all-links {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .main-link-btn {
+        .preview-link-btn {
             width: 100%;
             padding: 15px;
             color: white;
@@ -281,28 +281,9 @@
             background: linear-gradient(90deg, var(--theme-color), var(--theme-color-dark));
         }
 
-        .main-link-btn:hover {
+        .preview-link-btn:hover {
             transform: scale(1.02);
             box-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
-        }
-
-        #preview-social-links {
-            display: flex;
-            gap: 18px;
-            margin-top: 5px;
-            padding-bottom: 15px;
-        }
-
-        .social-link-btn {
-            color: white;
-            text-decoration: none;
-            font-size: 1.8rem;
-            transition: all 0.2s ease;
-        }
-
-        .social-link-btn:hover {
-            color: #f43f5e;
-            transform: scale(1.1);
         }
 
         /* Preview Gambar HP di Bawah */
@@ -322,6 +303,7 @@
             width: 100%;
             border-radius: 10px;
             border: 2px solid #475569;
+            content: url('https://via.placeholder.com/500x300?text=Tampilan+Linktree+di+HP');
         }
 
         /* Notifikasi */
@@ -389,7 +371,7 @@
     <div class="main-container">
         <!-- Panel Pengaturan Kiri -->
         <div class="settings-panel">
-            <h2 class="panel-title"><i class="fas fa-link"></i> LinkCraft PRO</h2>
+            <h2 class="panel-title"><i class="fas fa-link"></i> LinkCraft</h2>
 
             <!-- Bagian Profil -->
             <div class="section">
@@ -423,41 +405,55 @@
                 </div>
             </div>
 
-            <!-- Bagian Link Utama -->
+            <!-- Bagian Semua Link -->
             <div class="section">
-                <h3 class="section-title"><i class="fas fa-link"></i> Link Utama</h3>
-                <div id="main-link-list">
-                    <!-- Link Utama Default -->
-                    <div class="item-container" data-index="0">
-                        <input type="text" class="item-text" placeholder="Nama Link (Contoh: Portfolio Saya)" oninput="updatePreview()">
-                        <input type="url" class="item-url" placeholder="https://linkmu.com" oninput="updatePreview()">
-                        <select class="item-icon" oninput="updatePreview()">
+                <h3 class="section-title"><i class="fas fa-link"></i> Daftar Link</h3>
+                <div id="all-link-list">
+                    <!-- Link Default -->
+                    <div class="link-item" data-index="0">
+                        <input type="text" class="link-text" placeholder="Nama Link (Contoh: Instagram / Portfolio)" oninput="updatePreview()">
+                        <input type="url" class="link-url" placeholder="https://linkmu.com" oninput="updatePreview()">
+                        <select class="link-icon" oninput="updatePreview()">
+                            <option value="fab fa-instagram">Instagram</option>
+                            <option value="fab fa-tiktok">TikTok</option>
+                            <option value="fab fa-youtube">YouTube</option>
+                            <option value="fab fa-discord">Discord</option>
+                            <option value="fab fa-whatsapp">WhatsApp</option>
                             <option value="fas fa-globe">Website</option>
                             <option value="fas fa-file-alt">Portfolio</option>
                             <option value="fas fa-shopping-cart">Toko Online</option>
                             <option value="fas fa-donate">Donasi</option>
                             <option value="fas fa-envelope">Email</option>
-                            <option value="fab fa-discord">Discord</option>
-                            <option value="fab fa-tiktok">TikTok</option>
-                            <option value="fab fa-instagram">Instagram</option>
-                            <option value="fab fa-youtube">YouTube</option>
                         </select>
-                        <div class="item-controls">
-                            <button class="btn btn-secondary" onclick="moveItem('main', 0, 'up')">↑ Naik</button>
-                            <button class="btn btn-secondary" onclick="moveItem('main', 0, 'down')">↓ Turun</button>
-                            <button class="btn btn-danger" onclick="removeItem('main', 0)">❌ Hapus</button>
+                        <div class="link-controls">
+                            <button class="btn btn-secondary" onclick="moveLink(0, 'up')">↑ Naik</button>
+                            <button class="btn btn-secondary" onclick="moveLink(0, 'down')">↓ Turun</button>
+                            <button class="btn btn-danger" onclick="removeLink(0)">❌ Hapus</button>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" onclick="addItem('main')">
-                    <i class="fas fa-plus"></i> Tambah Link Utama
+                <button class="btn btn-primary" onclick="addLink()">
+                    <i class="fas fa-plus"></i> Tambah Link
                 </button>
             </div>
+        </div>
 
-            <!-- Bagian Media Sosial (Persis Sama Link Utama) -->
-            <div class="section">
-                <h3 class="section-title"><i class="fas fa-share-alt"></i> Media Sosial</h3>
-                <div id="social-link-list">
-                    <!-- Sosial Media Default -->
-                    <div class="item-container" data-index="0">
-                        <input type="text" class="item-text" placeholder="Nama Sosial Media (Contoh: Instagram)" oninput="updatePreview
+        <!-- Panel Kanan (Pratinjau) -->
+        <div class="preview-panel">
+            <button class="export-btn" onclick="exportLinktree()">
+                <i class="fas fa-download"></i> Export Linktree
+            </button>
+
+            <div class="preview-device">
+                <div class="device-notch"></div>
+                <div id="live-preview">
+                    <img id="preview-avatar" src="https://via.placeholder.com/90" alt="Profil">
+                    <h2 id="preview-name">Nama Kamu</h2>
+                    <p id="preview-tagline">Deskripsi singkat kamu bisa disini</p>
+                    <div id="preview-all-links"></div>
+                </div>
+            </div>
+
+            <!-- Preview Gambar HP -->
+            <div class="phone-display-preview">
+                <h
