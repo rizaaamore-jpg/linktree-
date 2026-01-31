@@ -109,3 +109,14 @@ footer{
   margin-top:12px;
   font-size:18px
 }
+
+.socials a{
+  margin:0 6px;
+  display:inline-block;
+}
+
+.socials svg{
+  width:22px;
+  height:22px;
+  fill:white;
+}
