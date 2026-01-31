@@ -74,12 +74,20 @@ const icons = {
 
 addSocialBtn.addEventListener("click", () => {
   if (!socialUrl.value) return;
+
   const a = document.createElement("a");
   a.href = socialUrl.value;
   a.target = "_blank";
-  a.innerHTML = icons[socialType.value];
+  a.style.background = themeColor.value;
+
+  a.innerHTML = `
+    ${icons[socialType.value]}
+    <span>${socialText.value || socialType.value}</span>
+  `;
+
   socials.appendChild(a);
   socialUrl.value = "";
+  socialText.value = "";
 });
 
 // EXPORT (PREVIEW = EXPORT)
